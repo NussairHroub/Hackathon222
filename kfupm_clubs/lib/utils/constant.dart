@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 // Colors Section Start//
 
 const Color blackColor = Color(0xFF333333);
