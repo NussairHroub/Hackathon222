@@ -11,18 +11,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const EventDetailsPage(),
-            ),
-          );
-        },
-        child: const Text('Go to Event Details Page'),
-      ),
-    );
+    return Container();
   }
 }
