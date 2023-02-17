@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1011073520639",
+    "firebase_url": "https://hackathon222-bb9f7-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "hackathon222-bb9f7",
+    "storage_bucket": "hackathon222-bb9f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1011073520639:android:30b3bb6d057a78f4a14dca",
+        "android_client_info": {
+          "package_name": "com.example.kfupm_clubs"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1011073520639-bhsiimhg3s2m09o5sejdfiu941hepof4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCcF8Bqcv1wEqRNFWlVICsePcijRIiAfZY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1011073520639-bhsiimhg3s2m09o5sejdfiu941hepof4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kfupm_clubs/screens/home/myEvents.dart';
+import 'package:kfupm_clubs/screens/home_page/myEvents.dart';
 import 'home.dart';
 
 class HomeStructure extends StatefulWidget {
