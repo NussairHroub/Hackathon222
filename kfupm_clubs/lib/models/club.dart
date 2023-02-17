@@ -1,8 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class Club{
   final String id;
   final String name;
   final String description;
   final String image;
+
+  factory Club.fromQuery(QueryDocumentSnapshot club) {
+    return Club(
+      id: club.id,
+      name: club.get('name'),
+      description: club.get('description'),
+      image: club.get('image'),
+    );
+  }
 
   Club({
     required this.id,

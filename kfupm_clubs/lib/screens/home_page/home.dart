@@ -1,83 +1,98 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kfupm_clubs/services/database.dart';
 
-class HomePage extends StatefulWidget {
+import '../../models/club.dart';
+
+class HomePage extends ConsumerStatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  HomePageState createState() => HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 50, child: Image.asset('assets/kfupm-logo.png')),
-            const Text(
-              ' Titile',
-              style: TextStyle(
-                color: Color.fromARGB(255, 0, 125, 65),
-              ),
-            ),
-          ],
-        ),
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final clubs = ref.watch(clubsFutureProvider);
+
+    return clubs.when(
+      error: (error, stackTrace) => Center(child: Text(error.toString())),
+      loading: () => Center(
+          child:
+              CircularProgressIndicator(color: Theme.of(context).primaryColor)),
+      data: (clubsList) {
+        List<ClubCard> eventCardsList = [];
+        for (Club club in clubsList) {
+          eventCardsList.add(ClubCard(clubName: club.name,));
+        }
+        return Scaffold(
+          appBar: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                TextButton(onPressed: () => {}, child: Text('Sign in')),
-                Container(
-                  child: Text('search bar'),
-                )
+                SizedBox(
+                    height: 50, child: Image.asset('assets/kfupm-logo.png')),
+                const Text(
+                  ' Titile',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 0, 125, 65),
+                  ),
+                ),
               ],
             ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                cacheExtent: 999999,
-                childAspectRatio: 0.7 / 1,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                scrollDirection: Axis.vertical,
-                children: [
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                  EventCard(),
-                ],
-              ),
+            elevation: 0.0,
+            backgroundColor: Colors.transparent,
+          ),
+          body: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(onPressed: () => {}, child: Text('Sign in')),
+                    Container(
+                      child: Text('search bar'),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: GridView.count(
+                    crossAxisCount: 2,
+                    cacheExtent: 999999,
+                    childAspectRatio: 0.7 / 1,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    scrollDirection: Axis.vertical,
+                    children: eventCardsList,
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.people),
-          label: "Following",
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined), label: "Profile")
-      ]),
+          ),
+          bottomNavigationBar: BottomNavigationBar(items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.people),
+              label: "Following",
+            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person_outlined), label: "Profile")
+          ]),
+        );
+      },
     );
   }
 }
 
-class EventCard extends StatelessWidget {
-  const EventCard({Key? key}) : super(key: key);
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+class ClubCard extends StatelessWidget {
+  
+  const ClubCard({required this.clubName}) : super();
+  final String clubName;
 
   @override
   Widget build(BuildContext context) {
@@ -93,11 +108,15 @@ class EventCard extends StatelessWidget {
         ),
         Expanded(
             child: Center(
-                child: Text(
-          "Event Name",
-          style:
-              TextStyle(color: Color(0xff00210c), fontWeight: FontWeight.bold),
-        )))
+                child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                  child: Text(
+                          clubName,
+                          textAlign: TextAlign.center,
+                          style:
+                              TextStyle(color: Color(0xff00210c), fontWeight: FontWeight.bold,),
+                        ),
+                )))
       ]),
     );
   }
