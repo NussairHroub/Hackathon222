@@ -22,7 +22,7 @@ class EventsOfClubState extends ConsumerState<EventsOfClub> {
       ),
       data: (events) {
         return SingleChildScrollView(
-          child: Column(children: events.map((event) {
+          child: Column(children: events.where((element) => element.clubId==widget.club.id).map((event) {
             return MyEventTile(
               clubName: widget.club.name,
               startTime: event.startTime,
