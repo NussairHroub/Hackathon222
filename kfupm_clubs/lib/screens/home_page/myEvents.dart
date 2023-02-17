@@ -71,6 +71,7 @@ class _MyEventTileState extends State<MyEventTile> {
   int _days = 0;
   int _hours = 0;
   bool _isInDays = false;
+  bool _isFinished = false;
 
 //  TODO: calculate the percentage
 
@@ -81,6 +82,8 @@ class _MyEventTileState extends State<MyEventTile> {
     _days = _left.inDays;
     _isInDays = _days > 0;
     _hours = _left.inHours;
+    _isFinished = (_days <= 0 && _hours <= 0);
+
     setState(() {});
   }
 
@@ -140,11 +143,15 @@ class _MyEventTileState extends State<MyEventTile> {
                       height: 4,
                     ),
                     Text(
-                      _days <= 0 && _hours <= 0
+                      _isFinished
                           ? "Finshed"
                           : _isInDays
                               ? "${_days} Days Left"
                               : "${_hours} Hours Left",
+                      style: _isFinished
+                          ? TextStyle(
+                              fontWeight: FontWeight.bold, color: Colors.red)
+                          : null,
                       // _isInDays ? "${_days} Days Left" : "${_hours} Hours Left",
                     ),
                   ],
