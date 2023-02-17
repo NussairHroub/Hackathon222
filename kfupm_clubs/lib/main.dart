@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kfupm_clubs/screens/home/home-stucture.dart';
 import 'package:kfupm_clubs/screens/home/home.dart';
 
 void main() {
@@ -15,12 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSwatch().copyWith(
           primary: const Color(0xff007D40)
         )
       ),
-      home: HomeStructure(),
+      home: const HomePage(),
     );
   }
 }
