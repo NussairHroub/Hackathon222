@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kfupm_clubs/utils/constant.dart';
 
 class EventBottomBar extends StatefulWidget {
   const EventBottomBar({Key? key}) : super(key: key);
@@ -15,28 +16,25 @@ class _EventBottomBarState extends State<EventBottomBar> {
       children: [
         Row(
           //time down counter
-          children: const [
-            Text('Time Left: ', style: TextStyle(fontSize: 17)),
-            Text('47', style: TextStyle(fontSize: 17)),
-            Text(':', style: TextStyle(fontSize: 17)),
-            Text('16', style: TextStyle(fontSize: 17)),
+          children: [
+            Text('10', style: sourceCodePro32Font),
+            Text(':', style: sourceCodePro32Font),
+            Text('50', style: sourceCodePro32Font),
           ],
         ),
         InkWell(
           onTap: () {},
           child: Container(
-            width: 150,
-            height: 50,
+            width: 135,
+            height: 45,
             decoration: BoxDecoration(
-              color: Colors.yellow[600],
+              color: primaryColor,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: const Center(
+            child: Center(
               child: Text(
-                'Register',
-                style: TextStyle(
-                  color: Colors.black,
-                ),
+                'Register Me',
+                style: sourceCodePro16Font,
               ),
             ),
           ),

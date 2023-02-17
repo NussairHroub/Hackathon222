@@ -4,6 +4,8 @@ import 'package:kfupm_clubs/screens/event_details_page/widgets/event_bottom_bar.
 import 'package:kfupm_clubs/screens/event_details_page/widgets/event_picture.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/event_toggle_bar.dart';
 
+import '../../utils/constant.dart';
+
 class EventDetailsPage extends StatefulWidget {
   const EventDetailsPage({Key? key}) : super(key: key);
 
@@ -26,30 +28,24 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: const [
-              EventPicture(),
-              SizedBox(
+            children: [
+              const EventPicture(),
+              const SizedBox(
                 height: 20,
               ),
-              Text(
-                'Event Name',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              SizedBox(
+              Text('Event Name', style: sourceCodePro20Font),
+              const SizedBox(
                 height: 20,
               ),
-              EventInfo(),
-              SizedBox(
+              const EventInfo(),
+              const SizedBox(
                 height: 20,
               ),
-              Expanded(child: EventToggleBar()),
-              SizedBox(
+              const EventToggleBar(),
+              const SizedBox(
                 height: 20,
               ),
-              EventBottomBar(),
+              const EventBottomBar(),
             ],
           ),
         ));

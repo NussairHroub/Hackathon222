@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:kfupm_clubs/screens/event_details_page/event_details_page.dart';
 import 'package:kfupm_clubs/screens/home_page/home.dart';
 
 void main() {

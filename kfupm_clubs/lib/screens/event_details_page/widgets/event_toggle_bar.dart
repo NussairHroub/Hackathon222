@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/date.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/details.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/location_map.dart';
+import 'package:kfupm_clubs/utils/constant.dart';
 
 class EventToggleBar extends StatefulWidget {
   const EventToggleBar({Key? key}) : super(key: key);
@@ -12,20 +13,20 @@ class EventToggleBar extends StatefulWidget {
 
 class _EventToggleBarState extends State<EventToggleBar> {
   List<bool> isSelected = [true, false, false];
-  List<String> options = ['Details', 'Dates', 'Map'];
+  List<String> options = ['Details', 'Dates', 'MAP'];
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          height: 40,
+          height: 45,
           child: ToggleButtons(
             isSelected: isSelected,
-            color: Colors.grey,
+            color: darkGreyColor,
+            fillColor: primaryColor,
+            selectedColor: whiteColor,
+            borderColor: darkGreyColor,
             borderRadius: BorderRadius.circular(10),
-            fillColor: Colors.black,
-            selectedColor: Colors.white,
-            borderColor: Colors.grey,
             constraints: BoxConstraints(
                 minWidth: (MediaQuery.of(context).size.width - 50) / 3),
             onPressed: (int index) {
@@ -41,18 +42,26 @@ class _EventToggleBarState extends State<EventToggleBar> {
                 }
               });
             },
-            children: options.map((e) => Text(e)).toList(),
+            children: options
+                .map((e) => Text(
+                      e,
+                      style: sourceCodePro14Font,
+                    ))
+                .toList(),
           ),
         ),
         const SizedBox(
           height: 20,
         ),
-        Container(
-          child: isSelected[0]
-              ? const Details()
-              : isSelected[1]
-                  ? const Date()
-                  : const LocationMap(),
+        SizedBox(
+          height: 135,
+          child: SingleChildScrollView(
+            child: isSelected[0]
+                ? const Details()
+                : isSelected[1]
+                    ? const Date()
+                    : const LocationMap(),
+          ),
         ),
       ],
     );
