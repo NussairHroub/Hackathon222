@@ -14,36 +14,35 @@ class _MyEventsPageState extends State<MyEventsPage> {
       child: Column(
         children: [
           MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),
-              MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),
-              MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),
-
-              MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),
-
-              MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),MyEventTile(
-              eventName: "KFUPM Hackathon 2023",
-              clubName: "Computer",
-              finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
-              ),
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2022, 2, 20, 0, 0, 0),
+          ),
+          MyEventTile(
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
+          ),
+          MyEventTile(
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
+          ),
+          MyEventTile(
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
+          ),
+          MyEventTile(
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
+          ),
+          MyEventTile(
+            eventName: "KFUPM Hackathon 2023",
+            clubName: "Computer",
+            finalDate: DateTime.utc(2023, 2, 20, 0, 0, 0),
+          ),
         ],
       ),
     );
@@ -97,9 +96,8 @@ class _MyEventTileState extends State<MyEventTile> {
         ),
         child: Container(
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Color(0xff7C7C7C))
-          ),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Color(0xff7C7C7C))),
           child: Padding(
             padding: const EdgeInsets.all(13),
             child: Row(
@@ -133,7 +131,8 @@ class _MyEventTileState extends State<MyEventTile> {
                         child: LinearProgressIndicator(
                           value: _timeLeft,
                           backgroundColor: Color(0xffe0e1dd),
-                          valueColor: new AlwaysStoppedAnimation(Color(0xffdecd6a)),
+                          valueColor:
+                              new AlwaysStoppedAnimation(Color(0xffdecd6a)),
                         ),
                       ),
                     ),
@@ -141,7 +140,12 @@ class _MyEventTileState extends State<MyEventTile> {
                       height: 4,
                     ),
                     Text(
-                      _isInDays ? "${_days} Days Left" : "${_hours} Hours Left",
+                      _days <= 0 && _hours <= 0
+                          ? "Finshed"
+                          : _isInDays
+                              ? "${_days} Days Left"
+                              : "${_hours} Hours Left",
+                      // _isInDays ? "${_days} Days Left" : "${_hours} Hours Left",
                     ),
                   ],
                 )
