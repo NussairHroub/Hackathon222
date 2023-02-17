@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kfupm_clubs/screens/home_page/home-stucture.dart';
 import 'package:kfupm_clubs/screens/home_page/home.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
 
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(primary: const Color(0xff007D40))),
-      home: const HomePage(),
+      home: HomeStructure(),
     );
   }
 }

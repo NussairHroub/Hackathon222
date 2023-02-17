@@ -10,24 +10,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(height: 50, child: Image.asset('assets/kfupm-logo.png')),
-            const Text(
-              ' Titile',
-              style: TextStyle(
-                color: Color.fromARGB(255, 0, 125, 65),
-              ),
-            ),
-          ],
-        ),
-        elevation: 0.0,
-        backgroundColor: Colors.transparent,
-      ),
-      body: Padding(
+    return 
+      
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
         child: Column(
           children: [
@@ -62,16 +47,6 @@ class _HomePageState extends State<HomePage> {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem(
-          icon: Icon(Icons.people),
-          label: "Following",
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.person_outlined), label: "Profile")
-      ]),
     );
   }
 }
