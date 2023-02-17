@@ -24,63 +24,33 @@ class HomePageState extends ConsumerState<HomePage> {
       data: (clubsList) {
         List<ClubCard> eventCardsList = [];
         for (Club club in clubsList) {
-          eventCardsList.add(ClubCard(clubName: club.name,));
+          eventCardsList.add(ClubCard(
+            clubName: club.name,
+          ));
         }
-        return Scaffold(
-          appBar: AppBar(
-            title: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+        return Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                    height: 50, child: Image.asset('assets/kfupm-logo.png')),
-                const Text(
-                  ' Titile',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 0, 125, 65),
-                  ),
-                ),
+                TextButton(onPressed: () => {}, child: Text('Sign in')),
+                Container(
+                  child: Text('search bar'),
+                )
               ],
             ),
-            elevation: 0.0,
-            backgroundColor: Colors.transparent,
-          ),
-          body: Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 0.0),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(onPressed: () => {}, child: Text('Sign in')),
-                    Container(
-                      child: Text('search bar'),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: GridView.count(
-                    crossAxisCount: 2,
-                    cacheExtent: 999999,
-                    childAspectRatio: 0.7 / 1,
-                    mainAxisSpacing: 10,
-                    crossAxisSpacing: 10,
-                    scrollDirection: Axis.vertical,
-                    children: eventCardsList,
-                  ),
-                ),
-              ],
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                cacheExtent: 999999,
+                childAspectRatio: 0.7 / 1,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                scrollDirection: Axis.vertical,
+                children: eventCardsList,
+              ),
             ),
-          ),
-          bottomNavigationBar: BottomNavigationBar(items: [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.people),
-              label: "Following",
-            ),
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.person_outlined), label: "Profile")
-          ]),
+          ],
         );
       },
     );
@@ -90,7 +60,6 @@ class HomePageState extends ConsumerState<HomePage> {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class ClubCard extends StatelessWidget {
-  
   const ClubCard({required this.clubName}) : super();
   final String clubName;
 
@@ -109,14 +78,16 @@ class ClubCard extends StatelessWidget {
         Expanded(
             child: Center(
                 child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-                  child: Text(
-                          clubName,
-                          textAlign: TextAlign.center,
-                          style:
-                              TextStyle(color: Color(0xff00210c), fontWeight: FontWeight.bold,),
-                        ),
-                )))
+          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          child: Text(
+            clubName,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xff00210c),
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        )))
       ]),
     );
   }
