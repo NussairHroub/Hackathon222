@@ -1,7 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'package:kfupm_clubs/screens/home_page/home-stucture.dart';
+
 import 'package:kfupm_clubs/screens/home_page/home.dart';
 
 void main() async {
@@ -19,9 +23,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
+
           colorScheme: ColorScheme.fromSwatch()
               .copyWith(primary: const Color(0xff007D40))),
-      home: const HomePage(),
+      home: HomeStructure(),
     );
   }
 }
