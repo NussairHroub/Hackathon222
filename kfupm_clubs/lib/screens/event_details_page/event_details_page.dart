@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kfupm_clubs/models/event.dart';
 import 'package:kfupm_clubs/screens/event_details_page/event_info.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/event_bottom_bar.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/event_picture.dart';
@@ -7,8 +8,8 @@ import 'package:kfupm_clubs/screens/event_details_page/widgets/event_toggle_bar.
 import '../../utils/constant.dart';
 
 class EventDetailsPage extends StatefulWidget {
-  const EventDetailsPage({Key? key}) : super(key: key);
-
+  const EventDetailsPage({Key? key, required this.event}) : super(key: key);
+  final Event event;
   @override
   State<EventDetailsPage> createState() => _EventDetailsPageState();
 }
@@ -29,19 +30,20 @@ class _EventDetailsPageState extends State<EventDetailsPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // TODO: pass the path of the image here
               const EventPicture(),
               const SizedBox(
                 height: 20,
               ),
-              Text('Event Name', style: sourceCodePro20Font),
+              Text('${widget.event.name}', style: sourceCodePro20Font),
               const SizedBox(
                 height: 20,
               ),
-              const EventInfo(),
+              EventInfo(event: widget.event),
               const SizedBox(
                 height: 20,
               ),
-              const EventToggleBar(),
+              EventToggleBar(event: widget.event),
               const SizedBox(
                 height: 20,
               ),

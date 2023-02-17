@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:kfupm_clubs/models/event.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/date.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/details.dart';
 import 'package:kfupm_clubs/screens/event_details_page/widgets/location_map.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
 
 class EventToggleBar extends StatefulWidget {
-  const EventToggleBar({Key? key}) : super(key: key);
+  const EventToggleBar({Key? key, required this.event}) : super(key: key);
+
+  final Event event;
 
   @override
   State<EventToggleBar> createState() => _EventToggleBarState();
@@ -57,9 +60,9 @@ class _EventToggleBarState extends State<EventToggleBar> {
           height: 135,
           child: SingleChildScrollView(
             child: isSelected[0]
-                ? const Details()
+                ? Details(details: widget.event.description)
                 : isSelected[1]
-                    ? const Date()
+                    ? Date(event: widget.event,)
                     : const LocationMap(),
           ),
         ),
