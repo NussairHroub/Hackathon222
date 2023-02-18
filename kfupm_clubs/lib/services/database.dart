@@ -125,7 +125,7 @@ class DB {
       {required String userId, required String eventId}) async {
     log(userId);
     final userToEventCollection = _firebase.collection('user_to_event');
-    await userToEventCollection.add({
+    await userToEventCollection.doc(userId+'_'+eventId).set({
       'userId': userId,
       'eventId': eventId,
     });
