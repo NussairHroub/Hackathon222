@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfupm_clubs/models/event.dart';
-import 'package:kfupm_clubs/utils/routers.dart';
+import 'package:kfupm_clubs/services/database.dart';
 
-class MyEventsPage extends StatefulWidget {
-  MyEventsPage({Key? key}) : super(key: key);
+class MyEventsPage extends ConsumerStatefulWidget {
+  const MyEventsPage({Key? key}) : super(key: key);
 
   @override
-  State<MyEventsPage> createState() => _MyEventsPageState();
+  MyEventsPageState createState() => MyEventsPageState();
 }
 
-class _MyEventsPageState extends State<MyEventsPage> {
+class MyEventsPageState extends ConsumerState<MyEventsPage> {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          MyEventTile(event: demoEvent),
-          MyEventTile(event: demoEvent2),
-        ],
+    final events = ref.watch(userToEventFutureProvider);
+
+    return events.when(
+      error: (error, stackTrace) => Center(child: Text(error.toString())),
+      loading: () => Center(
+        child: CircularProgressIndicator(color: Theme.of(context).primaryColor),
       ),
+      data: (events) {
+        return Scaffold(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SingleChildScrollView(
+              child: Column(
+                  children: events.map((event) {
+                return MyEventTile(
+                  event: event,
+                );
+              }).toList()),
+            ),
+          ),
+        );
+      },
     );
   }
 }
@@ -66,7 +82,6 @@ class _MyEventTileState extends State<MyEventTile> {
       padding: const EdgeInsets.symmetric(vertical: 8),
       child: GestureDetector(
         onTap: () {
-          print(widget.event.name);
           Navigator.pushNamed(context, '/eventDetailsPage',
               arguments: widget.event);
         },
@@ -87,7 +102,7 @@ class _MyEventTileState extends State<MyEventTile> {
                   ClipOval(
                       child: Image.asset(
                     // TODO: figure out away to get the club image
-                    "assets/Computer-club.jpg",
+                    widget.event.image,
                     height: 65,
                   )),
                   SizedBox(

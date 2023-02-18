@@ -7,7 +7,7 @@ import 'package:kfupm_clubs/utils/constant.dart';
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key, this.user}) : super(key: key);
 
-  final User? user;
+  final UserModel? user;
 
   @override
   Widget build(BuildContext context) {
