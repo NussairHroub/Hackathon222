@@ -3,16 +3,12 @@ import 'package:kfupm_clubs/models/event.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
 
 class EventInfo extends StatelessWidget {
-  const EventInfo(
-      {Key? key,
-      required this.event})
-      : super(key: key);
+  const EventInfo({Key? key, required this.event}) : super(key: key);
 
   final Event event;
 
   @override
   Widget build(BuildContext context) {
-
     String _startTime = event.startTime;
     String _location = event.location;
     int _seatsAvailable = event.maxSeats - event.seatsTaken;
@@ -57,7 +53,8 @@ class EventInfo extends StatelessWidget {
             const SizedBox(
               width: 5,
             ),
-            Text('${_seatsAvailable}', style: sourceCodePro12Font),
+            Text('${_seatsAvailable} seats remaining',
+                style: sourceCodePro12Font),
           ],
         ),
       ],
