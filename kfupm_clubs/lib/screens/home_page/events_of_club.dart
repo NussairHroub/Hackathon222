@@ -9,6 +9,7 @@ import '../../models/event.dart';
 class EventsOfClub extends ConsumerStatefulWidget {
   EventsOfClub({Key? key, required this.club}) : super(key: key);
   final Club club;
+  
   @override
   EventsOfClubState createState() => EventsOfClubState();
 }
@@ -16,6 +17,7 @@ class EventsOfClub extends ConsumerStatefulWidget {
 class EventsOfClubState extends ConsumerState<EventsOfClub> {
   @override
   Widget build(BuildContext context) {
+    print(widget.club.name);
     final events = ref.watch(eventsFutureProvider);
     return events.when(
       error: (error, stackTrace) => Center(child: Text(error.toString())),
@@ -33,7 +35,7 @@ class EventsOfClubState extends ConsumerState<EventsOfClub> {
             child: SingleChildScrollView(
               child: Column(
                   children: events
-                      .where((element) => element.clubId == widget.club.id)
+                      .where((element) => (element.clubId == widget.club.id))
                       .map((event) {
                 return MyEventTile(
                   clubName: widget.club.name,
@@ -80,9 +82,9 @@ class _MyEventTileState extends State<MyEventTile> {
   void initState() {
     super.initState();
     //  finalDate = DateTime.parse(widget.startTime.substring(0, 10));
-    finalDate = DateTime.parse(widget.startTime);
+    finalDate = DateTime.now();
 
-    _left = finalDate.difference(DateTime.now());
+    _left = finalDate.difference(DateTime.now().subtract(Duration(days: 2)));
     _days = _left.inDays;
     _isInDays = _days > 0;
     _hours = _left.inHours;

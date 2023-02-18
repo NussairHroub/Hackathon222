@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfupm_clubs/providers/user_to_event_provider.dart';
 
@@ -76,6 +77,7 @@ final userToEventFutureProvider = FutureProvider.autoDispose<List<Event>>(
 
 class DB {
   final _firebase = FirebaseFirestore.instance;
+
   Future<void> addUser(
       {required String name,
       required String email,

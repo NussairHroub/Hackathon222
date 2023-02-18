@@ -100,7 +100,7 @@ class _MyEventTileState extends State<MyEventTile> {
               child: Row(
                 children: [
                   ClipOval(
-                      child: Image.asset(
+                      child: Image.network(
                     // TODO: figure out away to get the club image
                     widget.event.image,
                     height: 65,

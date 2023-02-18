@@ -111,7 +111,7 @@ class ClubCard extends StatelessWidget {
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            child: Image.asset(club.image),
+            child:  Image.network(club.image, fit: BoxFit.fitHeight,),
           ),
           Expanded(
               child: Center(
