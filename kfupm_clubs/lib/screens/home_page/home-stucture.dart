@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfupm_clubs/models/user.dart';
@@ -60,7 +62,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
   @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
-
+    
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
@@ -102,6 +104,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
           onTap: (value) {
             setState(() {
               _currentIndex = value;
+                print(widget.user?.level);
             });
           },
           items: bottomBarItems,
