@@ -8,6 +8,7 @@ import 'package:kfupm_clubs/screens/add_event/add_event_page.dart';
 import 'package:kfupm_clubs/screens/home_page/myEvents.dart';
 import 'package:kfupm_clubs/screens/profile/profile_page.dart';
 import 'package:kfupm_clubs/services/database.dart';
+import 'package:kfupm_clubs/utils/constant.dart';
 import 'home.dart';
 
 class HomeStructure extends ConsumerStatefulWidget {
@@ -62,7 +63,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
   @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
-    
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
@@ -98,13 +99,13 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: BottomNavigationBar(
           selectedItemColor: Color(0xffDECD6A),
-          unselectedItemColor: Colors.white,
-          backgroundColor: Color(0xff027E40),
+          unselectedItemColor: primaryColor,
+          backgroundColor: primaryColor,
           currentIndex: _currentIndex,
           onTap: (value) {
             setState(() {
               _currentIndex = value;
-                print(widget.user?.level);
+              print(widget.user?.level);
             });
           },
           items: bottomBarItems,
