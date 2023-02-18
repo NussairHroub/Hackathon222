@@ -98,8 +98,8 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: BottomNavigationBar(
-          selectedItemColor: Color(0xffDECD6A),
-          unselectedItemColor: primaryColor,
+          selectedItemColor: primaryColor,
+          unselectedItemColor: darkGreyColor,
           backgroundColor: primaryColor,
           currentIndex: _currentIndex,
           onTap: (value) {
