@@ -80,6 +80,7 @@ class DB {
       {required String name,
       required String email,
       required String level,
+      required String clubId,
       required String studentId,
       required String uid}) async {
     final usersCollection = _firebase.collection('users');
@@ -89,6 +90,34 @@ class DB {
       'email': email,
       'level': level,
       'studentId': studentId,
+    });
+  }
+
+  Future<void> addEvent(
+      {required String name,
+      required String clubId,
+      required int maxSeats,
+      required String path,
+      required DateTime registrationDueDate,
+      required DateTime eventStart,
+      required String duration,
+      required String location,
+      required String description}) async {
+    final eventsCollection = _firebase.collection('events');
+
+    await eventsCollection.add({
+      'name': name,
+      'club_id': clubId,
+      'description': description,
+      'duration': duration,
+      'image': path,
+      'location': location,
+      'maxSeats': maxSeats,
+      'registrationEnd': registrationDueDate.toString(),
+      'seatsTaken': 0,
+      'status': 'In register time',
+      'time': eventStart.toString(),
+      'timeCreated': DateTime.now()
     });
   }
 

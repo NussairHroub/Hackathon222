@@ -30,6 +30,7 @@ class HomePageState extends ConsumerState<HomePage> {
                 child: CircularProgressIndicator(
                     color: Theme.of(context).primaryColor)),
             data: (clubsList) {
+              print(user?.id);
               log('home');
               List<ClubCard> eventCardsList = [];
               for (Club club in clubsList) {

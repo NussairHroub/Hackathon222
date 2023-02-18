@@ -3,15 +3,25 @@ import 'package:kfupm_clubs/models/user.dart';
 import 'package:kfupm_clubs/screens/profile/widgets/profile_info_button.dart';
 import 'package:kfupm_clubs/screens/profile/widgets/profile_info_row.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProfilePage extends StatelessWidget {
+import '../../providers/auth_provider.dart';
+
+class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({Key? key, this.user}) : super(key: key);
 
   final UserModel? user;
 
   @override
+  ProfilePageState createState() => ProfilePageState();
+}
+
+class ProfilePageState extends ConsumerState<ProfilePage> {
+  @override
   Widget build(BuildContext context) {
-    bool _isLoggedIn = user != Null;
+    final auth = ref.watch(authProvider);
+
+    bool _isLoggedIn = widget.user != Null;
 
     return Padding(
       padding: const EdgeInsets.only(top: 30, bottom: 30),
@@ -36,16 +46,13 @@ class ProfilePage extends StatelessWidget {
               ),
             ],
           ),
-          const ProfileInfoRow(
-              icon: Icons.person_outline, content: "Someone from mars"),
-          const ProfileInfoRow(
-              icon: Icons.mail_outline, content: "someone@mars.planet"),
-          const ProfileInfoRow(
-            icon: Icons.stairs_outlined,
-            content: "Martian",
-          ),
-          const SizedBox(
-            height: 50,
+          ProfileInfoRow(
+              icon: Icons.person_outline, content: "${widget.user?.name}"),
+          ProfileInfoRow(
+              icon: Icons.mail_outline, content: widget.user?.email),
+
+          SizedBox(
+            height: 100,
           ),
           // TODO: create another page for editing by using flags (low)
           ProfileInfoButton(
@@ -58,11 +65,13 @@ class ProfilePage extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
+          // TODO: LATER
           ProfileInfoButton(
             backgroundColor: redColor,
             phrase: "Logout",
             onPressed: () {
-              print("logout");
+              auth.signOut();
+              print("logged out");
             },
           ),
         ],

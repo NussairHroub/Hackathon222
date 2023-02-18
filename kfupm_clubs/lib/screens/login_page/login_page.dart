@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfupm_clubs/providers/auth_provider.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
+import '../../providers/auth_provider.dart';
 
 import '../../services/database.dart';
 
@@ -16,7 +17,7 @@ enum Status {
 
 Status type = Status.login;
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends ConsumerStatefulWidget {
   static const routename = '/LoginPage';
   const LoginPage({Key? key}) : super(key: key);
 
@@ -24,7 +25,7 @@ class LoginPage extends StatefulWidget {
   LoginPageState createState() => LoginPageState();
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends ConsumerState<LoginPage> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   final _name = TextEditingController();
@@ -59,8 +60,12 @@ class LoginPageState extends State<LoginPage> {
 
   List<bool> isSelected = [true, false];
   List<String> options = ['Student', 'Club President'];
+  String? _clubValue = "aSF0wfJLeIPvXnK4zTH0";
   @override
   Widget build(BuildContext context) {
+    final clubs = ref.watch(clubsFutureProvider);
+
+    print('build');
     return Scaffold(
       backgroundColor: primaryColor,
       resizeToAvoidBottomInset: false,
@@ -99,10 +104,12 @@ class LoginPageState extends State<LoginPage> {
                   .signUpWithEmailAndPassword(_email.text, _password.text)
                   .whenComplete(() => auth.user.listen((event) async {
                         if (event != null) {
+                          //TODO:add clubId after level please man <3
                           await DB().addUser(
                               name: _name.text,
                               email: _email.text,
                               level: options[isSelected[0] ? 0 : 1],
+                              clubId: _clubValue ?? "aSF0wfJLeIPvXnK4zTH0",
                               uid: event.uid,
                               studentId: _email.text
                                   .substring(1, _email.text.indexOf('@')));
@@ -127,7 +134,7 @@ class LoginPageState extends State<LoginPage> {
                 Expanded(
                   flex: 3,
                   child: Container(
-                    margin: const EdgeInsets.only(top: 48),
+                    margin: const EdgeInsets.only(top: 10),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -250,6 +257,40 @@ class LoginPageState extends State<LoginPage> {
                                   : null,
                             ),
                           ),
+                        if (type == Status.signUp)
+                          clubs.when(
+                              data: (clubsList) => Container(
+                                    margin: const EdgeInsets.symmetric(
+                                        horizontal: 24, vertical: 8),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 16, vertical: 4),
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius:
+                                            BorderRadius.circular(25)),
+                                    child: ListTile(
+                                      leading: Icon(Icons.group_outlined),
+                                      title: Text("Club: "),
+                                      trailing: DropdownButton<String>(
+                                        value: _clubValue,
+                                        onChanged: (value) {
+                                          setState(() {
+                                            _clubValue = value;
+                                            print(value);
+                                          });
+                                        },
+                                        items: clubsList
+                                            .map((club) =>
+                                                DropdownMenuItem<String>(
+                                                  child: Text(club.name),
+                                                  value: club.id,
+                                                ))
+                                            .toList(),
+                                      ),
+                                    ),
+                                  ),
+                              error: (error, trackStack) => Container(),
+                              loading: () => Container()),
                         if (type == Status.signUp)
                           Container(
                             margin: const EdgeInsets.symmetric(

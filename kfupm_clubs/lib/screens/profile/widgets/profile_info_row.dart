@@ -5,17 +5,16 @@ class ProfileInfoRow extends StatelessWidget {
   const ProfileInfoRow({Key? key, required this.icon, required this.content})
       : super(key: key);
   final IconData icon;
-  final String content;
+  final String? content;
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        border: Border(bottom: BorderSide(color: darkGreyColor, width: 0.5))
-      ),
+          border: Border(bottom: BorderSide(color: darkGreyColor, width: 0.5))),
       child: ListTile(
         leading: Icon(icon),
         title: Text(
-          content,
+          content?? "User",
           style: sourceCodePro14Font,
         ),
       ),

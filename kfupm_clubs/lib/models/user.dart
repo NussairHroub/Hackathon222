@@ -11,6 +11,7 @@ class UserModel {
       required this.name,
       required this.email,
       required this.level});
+
   factory UserModel.fromQuery(QueryDocumentSnapshot user) {
     return UserModel(
         id: user.id,
