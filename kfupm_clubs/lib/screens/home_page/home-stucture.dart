@@ -42,8 +42,8 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
       label: "Profile",
     ),
     const BottomNavigationBarItem(
-      icon: Icon(Icons.abc),
-      label: "Admin",
+      icon: Icon(Icons.add),
+      label: "Add Event",
     ),
   ];
   @override
