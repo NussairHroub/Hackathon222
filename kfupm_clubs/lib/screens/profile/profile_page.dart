@@ -5,12 +5,13 @@ import 'package:kfupm_clubs/screens/profile/widgets/profile_info_row.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../models/auth_user_model.dart';
 import '../../providers/auth_provider.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({Key? key, this.user}) : super(key: key);
 
-  final UserModel? user;
+  final AuthUserModel? user;
 
   @override
   ProfilePageState createState() => ProfilePageState();
@@ -46,10 +47,8 @@ class ProfilePageState extends ConsumerState<ProfilePage> {
               ),
             ],
           ),
-          ProfileInfoRow(
-              icon: Icons.person_outline, content: "${widget.user?.name}"),
-          ProfileInfoRow(
-              icon: Icons.mail_outline, content: widget.user?.email),
+          ProfileInfoRow(icon: Icons.person_outline, content: "${widget.user}"),
+          ProfileInfoRow(icon: Icons.mail_outline, content: "${widget.user}"),
 
           SizedBox(
             height: 100,
