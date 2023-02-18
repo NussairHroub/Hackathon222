@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:kfupm_clubs/screens/profile/widgets/profile_info_button.dart';
 import 'package:kfupm_clubs/utils/constant.dart';
 
+import '../../services/database.dart';
+
 class AddEventPage extends StatefulWidget {
   const AddEventPage({Key? key}) : super(key: key);
 
@@ -22,6 +24,7 @@ class _AddEventPageState extends State<AddEventPage> {
   String endDateText = "Select End Date";
   String? eventNameValue;
   int? seatsValue;
+  String? descriptionValue;
 
   @override
   Widget build(BuildContext context) {
@@ -240,6 +243,35 @@ class _AddEventPageState extends State<AddEventPage> {
                     ],
                   ),
                 )),
+            SizedBox(height: 10),
+            Container(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Event Description"),
+                    SizedBox(
+                      height: 5,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: darkGreyColor),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: TextField(
+                          onChanged: ((value) {
+                            descriptionValue = value;
+                          }),
+                          decoration: InputDecoration(
+                            hintText: "Enter The Event Description",
+                            border: InputBorder.none,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ]),
+            ),
             SizedBox(
               height: 20,
             ),
@@ -253,11 +285,23 @@ class _AddEventPageState extends State<AddEventPage> {
                           poster != null &&
                           dueDate != null &&
                           endDate != null) {
+                        DB().addEvent(
+                            name: eventNameValue ?? "",
+                            clubId: "asdfg",
+                            description: descriptionValue ?? "",
+                            maxSeats: seatsValue ?? 0,
+                            path: "",
+                            registrationDueDate: dueDate ?? DateTime.now(),
+                            eventStart: dueDate ?? DateTime.now(),
+                            duration: "10",
+                            location: "KFUPM");
                         print("All field filled");
+                        Navigator.popUntil(context, (route) => true);
+                        Navigator.pushNamed(context, '/');
                       } else {
                         print("missed field");
                       }
-                    }))
+                    })),
           ],
         ),
       ),

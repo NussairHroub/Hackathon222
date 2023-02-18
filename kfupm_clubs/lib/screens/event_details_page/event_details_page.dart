@@ -65,13 +65,16 @@ class EventDetailsPageState extends ConsumerState<EventDetailsPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Row(
-                          //time down counter
-                          children: [
-                            Text('10', style: sourceCodePro32Font),
-                            Text(':', style: sourceCodePro32Font),
-                            Text('50', style: sourceCodePro32Font),
-                          ],
+                        // Row(
+                        //   //time down counter
+                        //   children: [
+                        //     Text('10', style: sourceCodePro32Font),
+                        //     Text(':', style: sourceCodePro32Font),
+                        //     Text('50', style: sourceCodePro32Font),
+                        //   ],
+                        // ),
+                        Spacer(
+                          flex: 1,
                         ),
                         InkWell(
                           onTap: () {

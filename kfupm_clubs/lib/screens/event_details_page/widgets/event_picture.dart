@@ -10,7 +10,8 @@ class EventPicture extends StatelessWidget {
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.all(Radius.circular(20)),
         image: DecorationImage(
-          image: NetworkImage('https://picsum.photos/250?image=9'),
+          image: NetworkImage(
+              'https://firebasestorage.googleapis.com/v0/b/hackathon222-bb9f7.appspot.com/o/assets%2FGroup%2040.png?alt=media&token=4d15fcdd-d62f-4ecd-8328-07db4f15c5dd'),
           fit: BoxFit.cover,
         ),
       ),
