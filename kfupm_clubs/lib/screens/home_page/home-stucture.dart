@@ -100,7 +100,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
         child: BottomNavigationBar(
           selectedItemColor: primaryColor,
           unselectedItemColor: darkGreyColor,
-          backgroundColor: primaryColor,
+          backgroundColor: whiteColor,
           currentIndex: _currentIndex,
           onTap: (value) {
             setState(() {
