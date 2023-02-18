@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:kfupm_clubs/models/user.dart';
@@ -7,8 +9,9 @@ import 'package:kfupm_clubs/services/database.dart';
 import 'home.dart';
 
 class HomeStructure extends ConsumerStatefulWidget {
-  HomeStructure({Key? key}) : super(key: key);
+  HomeStructure({Key? key, this.user}) : super(key: key);
 
+  UserModel? user;
   @override
   HomeStructureState createState() => HomeStructureState();
 }
@@ -24,7 +27,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
   @override
   Widget build(BuildContext context) {
     final auth = ref.watch(authProvider);
-
+    
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
@@ -66,6 +69,7 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
             onTap: (value) {
               setState(() {
                 _currentIndex = value;
+                print(widget.user?.level);
               });
             },
             items: [
