@@ -138,7 +138,9 @@ class ClubCard extends StatelessWidget {
                           ),
                           Padding(padding: const EdgeInsets.all(6)),
                           Text(
-                            '${club.numberOfEvents} events',
+                            club.numberOfEvents != 0
+                                ? '${club.numberOfEvents} events'
+                                : "no events",
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                               color: Color(0xff7C7C7C),
