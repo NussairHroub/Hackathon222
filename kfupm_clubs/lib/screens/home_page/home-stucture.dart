@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kfupm_clubs/screens/home_page/myEvents.dart';
+import 'package:kfupm_clubs/screens/profile/profile_page.dart';
 import 'home.dart';
 
 class HomeStructure extends StatefulWidget {
@@ -11,11 +12,10 @@ class HomeStructure extends StatefulWidget {
 
 class _HomeStructureState extends State<HomeStructure> {
   int _currentIndex = 1;
-  // TODO: add every page to the list
   List<Widget> body = [
     MyEventsPage(),
     HomePage(),
-    Icon(Icons.person),
+    ProfilePage(),
   ];
   @override
   Widget build(BuildContext context) {

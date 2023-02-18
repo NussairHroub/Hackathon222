@@ -8,6 +8,7 @@ const Color darkGreyColor = Color(0xFF7C7C7C);
 const Color primaryColor = Color(0xFF027E40);
 const Color whiteColor = Color(0xFFFFFFFF);
 const Color goldColor = Color(0xFFDECD6A);
+const Color redColor = Color(0xFFDE0606);
 
 // Colors Section End//
 
