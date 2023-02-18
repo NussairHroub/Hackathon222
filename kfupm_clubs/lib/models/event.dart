@@ -14,22 +14,20 @@ class Event {
   final String startTime;
   final String duration;
 
-
   factory Event.fromQuery(QueryDocumentSnapshot event) {
     return Event(
-      id: event.id,
-      clubId: event.get('clubId'),
-      name: event.get('name'),
-      description: event.get('description'),
-      image: event.get('image'),
-      status: event.get('status'),
-      location: event.get('location'),
-      maxSeats: event.get('maxSeats'),
-      seatsTaken: event.get('seatsTaken'),
-      timeCreated: event.get('timeCreated'),
-      startTime: event.get('time'),
-      duration: event.get('duration')
-    );
+        id: event.id,
+        clubId: event.get('club_id'),
+        name: event.get('name'),
+        description: event.get('description'),
+        image: event.get('image'),
+        status: event.get('status'),
+        location: event.get('location'),
+        maxSeats: event.get('maxSeats'),
+        seatsTaken: event.get('seatsTaken'),
+        timeCreated: event.get('timeCreated').toString(),
+        startTime: event.get('time').toString(),
+        duration: event.get('duration'));
   }
 
   Event({
@@ -63,12 +61,12 @@ Event demoEvent = Event(
     startTime: '2023-02-30',
     duration: '3 days');
 
-
 Event demoEvent2 = Event(
     id: '1',
     clubId: '1',
     name: 'Programming Hackathon 202333',
-    description: 'hello guys how are you I miss you so much I hopped if I have more time with youdh ',
+    description:
+        'hello guys how are you I miss you so much I hopped if I have more time with youdh ',
     image: 'assets/Computer-club.jpg',
     status: 'in register time',
     location: '22-124',

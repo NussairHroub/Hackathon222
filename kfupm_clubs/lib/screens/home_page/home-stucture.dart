@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:kfupm_clubs/models/user.dart';
+import 'package:kfupm_clubs/providers/auth_provider.dart';
 import 'package:kfupm_clubs/screens/home_page/myEvents.dart';
+import 'package:kfupm_clubs/services/database.dart';
 import 'home.dart';
 
-class HomeStructure extends StatefulWidget {
+class HomeStructure extends ConsumerStatefulWidget {
   HomeStructure({Key? key}) : super(key: key);
 
   @override
-  State<HomeStructure> createState() => _HomeStructureState();
+  HomeStructureState createState() => HomeStructureState();
 }
 
-class _HomeStructureState extends State<HomeStructure> {
+class HomeStructureState extends ConsumerState<HomeStructure> {
   int _currentIndex = 1;
   // TODO: add every page to the list
   List<Widget> body = [
@@ -19,6 +23,8 @@ class _HomeStructureState extends State<HomeStructure> {
   ];
   @override
   Widget build(BuildContext context) {
+    final auth = ref.watch(authProvider);
+
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 70,
@@ -35,9 +41,12 @@ class _HomeStructureState extends State<HomeStructure> {
             Spacer(
               flex: 1,
             ),
-            Icon(
-              Icons.alarm_rounded,
-              size: 32,
+            InkWell(
+              onTap: (() => auth.signOut()),
+              child: Icon(
+                Icons.logout_outlined,
+                size: 32,
+              ),
             ),
           ],
         ),
@@ -60,14 +69,14 @@ class _HomeStructureState extends State<HomeStructure> {
               });
             },
             items: [
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                 icon: Icon(Icons.assignment_turned_in),
                 label: "My Events",
               ),
-              BottomNavigationBarItem(
+              const BottomNavigationBarItem(
                   icon: Icon(Icons.home_rounded), label: "Home"),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.person), label: "Profile")
+              const BottomNavigationBarItem(
+                  icon: Icon(Icons.person), label: "Profile"),
             ]),
       ),
     );
