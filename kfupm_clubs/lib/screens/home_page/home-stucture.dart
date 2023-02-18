@@ -31,8 +31,17 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
       label: "My Events",
     ),
     const BottomNavigationBarItem(
-        icon: Icon(Icons.home_rounded), label: "Home"),
-    const BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+      icon: Icon(Icons.home_rounded),
+      label: "Home",
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.person),
+      label: "Profile",
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.abc),
+      label: "Admin",
+    ),
   ];
   @override
   void initState() {
@@ -86,16 +95,17 @@ class HomeStructureState extends ConsumerState<HomeStructure> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
         child: BottomNavigationBar(
-            selectedItemColor: Color(0xffDECD6A),
-            unselectedItemColor: Colors.white,
-            backgroundColor: Color(0xff027E40),
-            currentIndex: _currentIndex,
-            onTap: (value) {
-              setState(() {
-                _currentIndex = value;
-              });
-            },
-            items: bottomBarItems),
+          selectedItemColor: Color(0xffDECD6A),
+          unselectedItemColor: Colors.white,
+          backgroundColor: Color(0xff027E40),
+          currentIndex: _currentIndex,
+          onTap: (value) {
+            setState(() {
+              _currentIndex = value;
+            });
+          },
+          items: bottomBarItems,
+        ),
       ),
     );
   }
