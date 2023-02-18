@@ -30,8 +30,6 @@ class HomePageState extends ConsumerState<HomePage> {
                 child: CircularProgressIndicator(
                     color: Theme.of(context).primaryColor)),
             data: (clubsList) {
-              print(user?.id);
-              log('home');
               List<ClubCard> eventCardsList = [];
               for (Club club in clubsList) {
                 eventCardsList.add(ClubCard(
@@ -106,26 +104,49 @@ class ClubCard extends StatelessWidget {
         height: 100,
         width: 70,
         decoration: BoxDecoration(
-            color: const Color(0xff92f8ad),
+            border: Border.all(color: const Color(0xff7C7C7C)),
             borderRadius: BorderRadius.circular(10)),
         child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(8)),
-            child: Image.asset(club.image),
+            child: Column(
+              children: [
+                Image.network(
+                  club.image,
+                  height: 140,
+                  width: 140,
+                ),
+              ],
+            ),
           ),
           Expanded(
               child: Center(
                   child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            child: Text(
-              club.name,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: Color(0xff00210c),
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          )))
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 8),
+                      child: Column(
+                        children: [
+                          Padding(padding: const EdgeInsets.all(7)),
+                          Text(
+                            club.name,
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Color(0xff00210c),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          Padding(padding: const EdgeInsets.all(6)),
+                          Text(
+                            '${club.numberOfEvents} events',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Color(0xff7C7C7C),
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ))))
         ]),
       ),
     );
